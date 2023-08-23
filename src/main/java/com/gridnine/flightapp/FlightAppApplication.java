@@ -23,5 +23,4 @@ public class FlightAppApplication {
         System.out.println(timeSpentOnEarthExceedsTwoHours);
 
     }
-
 }
