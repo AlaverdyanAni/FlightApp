@@ -43,9 +43,8 @@ public class Segment {
 
     @Override
     public String toString() {
-        return "Segment {" +
-                "arrival: " + arrival.getYear()+"-"+arrival.getMonth()+"-"+arrival.getDayOfMonth()+", "+arrival.getHour()+":"+arrival.getMinute()+
-                ", departure: " + departure.getYear()+"-"+departure.getMonth()+"-"+departure.getDayOfMonth()+", "+departure.getHour()+":"+departure.getMinute()+
-                '}';
+        return "Segment - " +
+                "Arrival: " + arrival.getYear()+"-"+arrival.getMonth()+"-"+arrival.getDayOfMonth()+", "+arrival.getHour()+":"+arrival.getMinute()+
+                ", Departure: " + departure.getYear()+"-"+departure.getMonth()+"-"+departure.getDayOfMonth()+", "+departure.getHour()+":"+departure.getMinute();
     }
 }

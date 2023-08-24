@@ -1,9 +1,7 @@
 package com.gridnine.flightapp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Flight implements  FlightInterface {
     private List<Segment> segments;
@@ -35,36 +33,71 @@ public class Flight implements  FlightInterface {
                 segments + "\n";
     }
 
+    //вылет до текущего момента времени
     @Override
     public List<Flight> findFlightsUpToCurrentTime(List<Flight> flights) {
-        return flights.stream()
-                .filter(flight -> flight.getSegments().stream().iterator().next().getArrival().isBefore(LocalDateTime.now())).toList();
+        List <Flight> findFlights = new ArrayList<>();
+        Iterator<Flight> flightIterator = flights.iterator();
+        while (flightIterator.hasNext()){
+            Flight flight=flightIterator.next();
+            Iterator<Segment> segmentIterator = flight.getSegments().iterator();
+            while (segmentIterator.hasNext()){
+                Segment segment = segmentIterator.next();
+                if (segment.getArrival().isBefore(LocalDateTime.now())){
+                    findFlights.add(flight);
+                }
+            }
+        }
+        return  Collections.unmodifiableList(findFlights);
     }
-        //List<Flight> findFlights = new ArrayList<>();
-        //for (Flight flight:flights){
-        //    for (int i = 0; i <flight.getSegments().size()-1 ; i++) {
-        //        if (flight.getSegments().get(i).getArrival().isBefore(LocalDateTime.now())) {
-        //           findFlights.add(flight);}}}
-        //  return findFlights;}
-
+    @Override
+    public List<Flight> findFlightsUpToCurrentTime2(List<Flight> flights) {
+        List<Flight> findFlights = new ArrayList<>();
+        for (Flight flight : flights) {
+            for (Segment segment:flight.getSegments()) {
+                if (segment.getArrival().isBefore(LocalDateTime.now())){
+                    findFlights.add(flight);
+                }
+            }
+        }
+        return findFlights;
+    }
+    //имеются сегменты с датой прилёта раньше даты вылета
     @Override
     public List<Flight> findFlightsWithArrivalEarlierThanDeparture(List<Flight> flights) {
-        return flights.stream()
-                .filter(flight -> flight.getSegments().iterator().next().getDeparture().isBefore(flight.getSegments().iterator().next().getArrival())).toList();
+        List <Flight> findFlights = new ArrayList<>();
+        Iterator<Flight> flightIterator = flights.iterator();
+        while (flightIterator.hasNext()) {
+            Flight flight = flightIterator.next();
+            Iterator<Segment> segmentIterator = flight.getSegments().iterator();
+            while (segmentIterator.hasNext()) {
+                Segment segment = segmentIterator.next();
+                if (segment.getArrival().isAfter(segment.getDeparture())) {
+                    findFlights.add(flight);
+                }
+            }
+        }
+        return Collections.unmodifiableList(findFlights);
     }
-        //List<Flight> findFlights = new ArrayList<>();
-        // for (Flight flight : flights) {
-        //    for (int i = 0; i < flight.getSegments().size()-1; i++) {
-        //        if (flight.getSegments().get(i).getDeparture().isBefore(flight.getSegments().get(i).getArrival())) {
-        //            findFlights.add(flight);
-        //        }}}
-        //return findFlights;}
+    @Override
+    public List<Flight> findFlightsWithArrivalEarlierThanDeparture2(List<Flight> flights) {
+        List<Flight> findFlights = new ArrayList<>();
+        for (Flight flight : flights) {
+            for (Segment segment:flight.getSegments()) {
+                if (segment.getArrival().isAfter(segment.getDeparture())){
+                    findFlights.add(flight);
+                }
+            }
+        }
+        return findFlights;
+    }
 
+    //общее время, проведённое на земле превышает два часа
     @Override
     public List<Flight> findFlightsTimeSpentOnEarthExceedsTwoHours(List<Flight> flights) {
         List<Flight> findFlights = new ArrayList<>();
         for (Flight flight : flights) {
-            for (int i = 0; i < flight.getSegments().size()-1; i++) {
+            for (int i = 0; i < flight.getSegments().size() - 1; i++) {
                 if (flight.getSegments().get(i + 1).getArrival().getHour() - flight.getSegments().get(i).getDeparture().getHour() > 2) {
                     findFlights.add(flight);
                 }
