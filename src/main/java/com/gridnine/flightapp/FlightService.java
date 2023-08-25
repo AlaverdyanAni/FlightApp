@@ -2,7 +2,7 @@ package com.gridnine.flightapp;
 
 import java.util.List;
 
-public interface FlightInterface {
+public interface FlightService {
 
 //вылет до текущего момента времени
 List<Flight> findFlightsUpToCurrentTime(List<Flight> flights);
