@@ -1,4 +1,4 @@
-package com.gridnine.flightapp;
+package com.gridnine.flightapp.model;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

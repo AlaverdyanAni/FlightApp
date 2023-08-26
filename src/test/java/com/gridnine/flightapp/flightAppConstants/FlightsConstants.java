@@ -1,9 +1,10 @@
 package com.gridnine.flightapp.flightAppConstants;
 
-import com.gridnine.flightapp.Flight;
-import com.gridnine.flightapp.Segment;
+import com.gridnine.flightapp.model.Flight;
+import com.gridnine.flightapp.model.Segment;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FlightsConstants {
@@ -36,9 +37,16 @@ public class FlightsConstants {
     static final Segment segment10 = new Segment(LocalDateTime.now().plusDays(4),LocalDateTime.now().plusDays(4).plusHours(2));
     static final Flight flight6 = new Flight(Arrays.asList(segment9, segment10));
 
+    //Flight without segments - Полет без сегментов.
+    static final Flight flight7 = new Flight(Collections.emptyList());
 
     public  static final List<Flight> FLIGHTS = Arrays.asList(flight1, flight2, flight3, flight4, flight5, flight6);
     public static final List <Flight> UP_TO_CURRENT_TIME_FLIGHTS = Arrays.asList(flight1,flight2);
-    public static final List <Flight> ARRIVAL_EARLIER_THAN_DEPARTURE_FLIGHTS = List.of(flight3, flight4);
-    public static final List <Flight> TIME_SPENT_ON_EARTH_EXCEEDS_TWO_HOURS_FLIGHTS = List.of(flight5, flight6);
+    public static final List <Flight> ARRIVAL_EARLIER_THAN_DEPARTURE_FLIGHTS = Arrays.asList(flight3, flight4);
+    public static final List <Flight> TIME_SPENT_ON_EARTH_EXCEEDS_TWO_HOURS_FLIGHTS = Arrays.asList(flight5, flight6);
+    public static final List <Flight> NORMAL_FLIGHTS_1 = Arrays.asList(flight5, flight6);
+    public static final List <Flight> NORMAL_FLIGHTS_2 = Arrays.asList(flight1, flight2);
+    public static final List <Flight> WITHOUT_SEGMENTS_FLIGHTS = Arrays.asList(flight7);
+    public static final List <Flight> WITHOUT_FLIGHT_FLIGHTS = Collections.emptyList();
+
 }
