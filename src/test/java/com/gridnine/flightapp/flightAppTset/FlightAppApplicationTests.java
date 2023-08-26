@@ -1,4 +1,4 @@
-package com.gridnine.flightapp;
+package com.gridnine.flightapp.flightAppTset;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

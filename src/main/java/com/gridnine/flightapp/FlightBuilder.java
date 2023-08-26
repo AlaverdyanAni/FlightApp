@@ -1,11 +1,13 @@
 package com.gridnine.flightapp;
 
+import com.gridnine.flightapp.model.Flight;
+import com.gridnine.flightapp.model.Segment;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
- class FlightBuilder {
+class FlightBuilder {
     static List<Flight> createFlights() {
         LocalDateTime threeDaysFromNow = LocalDateTime.now().plusDays(3);
 
@@ -16,7 +18,7 @@ import java.util.List;
                 //A normal multi segment flight - Обычный многосегментный рейс
                 createFlight(threeDaysFromNow, threeDaysFromNow.plusHours(2),
                         threeDaysFromNow.plusHours(3), threeDaysFromNow.plusHours(5)),
-                //A flight departing in the past - Обычный многосегментный рейс
+                //A flight departing in the past - Рейс, вылетающий в прошлом
                 createFlight(threeDaysFromNow.minusDays(6), threeDaysFromNow),
                 //A flight that departs before it arrives - Рейс, который вылетает до прибытия
                 createFlight(threeDaysFromNow, threeDaysFromNow.minusHours(6)),
@@ -29,7 +31,7 @@ import java.util.List;
                         threeDaysFromNow.plusHours(6), threeDaysFromNow.plusHours(7)));
     }
 
-     private static Flight createFlight(LocalDateTime... dates) {
+    private static Flight createFlight(LocalDateTime... dates) {
         if ((dates.length % 2) != 0) {
             throw new IllegalArgumentException(
                     "You must pass an even number of dates! - Вы должны передать четное количество дат!");
