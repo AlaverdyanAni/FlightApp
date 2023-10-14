@@ -17,6 +17,6 @@
 
     Используемые технологии
 
-Java 11
-Maven
-Spring Boot 2
+- Java 11
+- Maven
+- Spring Boot
