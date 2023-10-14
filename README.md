@@ -14,3 +14,9 @@
   - Метод  findFlightsWithArrivalEarlierThanDeparture(List<Flight> flights) - исключает из тестового набора перелёты, которые имеют сегменты с датой прилёта раньше даты вылета.
   - Метод  findFlightsTimeSpentOnEarthExceedsTwoHours(List<Flight> flights) - исключает из тестового набора перелёты, общее время проведённое на земле которых превышает два часа
     (время на земле — это интервал между прилётом одного сегмента и вылетом следующего за ним).
+
+    Используемые технологии
+
+Java 11
+Maven
+Spring Boot 2
